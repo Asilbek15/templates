@@ -1,1 +1,1 @@
-my templates
+My templates
