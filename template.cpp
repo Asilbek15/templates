@@ -1,22 +1,18 @@
-#pragma GCC optimize("Ofast")
-#pragma GCC optimize ("unroll-loops")
-#pragma GCC target("avx,avx2")
+//#pragma GCC optimize("Ofast")
+//#pragma GCC optimize ("unroll-loops")
+//#pragma GCC target("avx,avx2")
 
 #include <bits/stdc++.h>
-// #include <ext/pb_ds/assoc_container.hpp>
-#include "stdio.h"
+//#include <ext/pb_ds/assoc_container.hpp>
 
 using namespace std;
-// using namespace __gnu_pbds;
+//using namespace __gnu_pbds;
 
 #define int long long
-#define all(a) a.begin(), a.end()
-#define rall(a) a.rbegin(), a.rend()
 #define ff first
 #define ss second
-#define sz(a) (a).size()
-// template<typename T> using indexed_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
-// template<class T, class C = null_type> using ordered_tree = tree<T, C, less_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;
+#define sz(a) (int) (a).size()
+//template<class T, class C = null_type> using ordered_tree = tree<T, C, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 typedef long double ld;
 
 namespace io {
@@ -200,13 +196,13 @@ namespace utils {
 using namespace utils;
 
 
-#ifdef sunnitov
+#ifdef sunnatov
 #define print(...) cout << "[" << #__VA_ARGS__ << "]: "; io::print( __VA_ARGS__ );
 #else
 #define print( ... ) 42
 #endif
 
-int mod = 9_E + 7;
+const int mod = 9_E + 7;
 const double EPS = 1e-7;
 long long LLINF = 18_E + 10;
 int INF = 9_E + 10;
@@ -224,9 +220,7 @@ void solution(istream &cin, ostream &cout, const int &test_case) {
 
 int32_t main() {
     clock_t startTime = clock();
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
+    cin.tie(0)->sync_with_stdio(false);
     srand(time(0));
 
     std::istream &in(std::cin);
@@ -248,10 +242,9 @@ int32_t main() {
         cout << nl;
     }
 
-#ifdef sunnitov
+#ifdef sunnatov
     cout << "Time: " << (int) ((double) (clock() - startTime) / CLOCKS_PER_SEC * 1000) << " ms" << endl;
 #endif
 
     return EXIT_SUCCESS;
-
 }

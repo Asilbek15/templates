@@ -1,7 +1,6 @@
-#pragma GCC optimize("Ofast")
-#pragma GCC optimize ("unroll-loops")
+#pragma GCC optimize("Ofast,O3")
 #pragma GCC target("avx,avx2")
-#include <bits/stdc++.h>
+#include "bits/stdc++.h"
 
 using namespace std;
 using ll = long long;
@@ -11,7 +10,7 @@ void solve() {
 }
 
 int main() {
-    ios_base::sync_with_stdio( false ); cin.tie( nullptr ); cout.tie( nullptr );
+    cin.tie(0)->sync_with_stdio(false);
     int q = 1;
     cin >> q;
     while (q--) {

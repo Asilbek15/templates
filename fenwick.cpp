@@ -7,6 +7,10 @@ template<typename T> struct Fenwick {
         tree.assign(n + 1, 0);
     }
 
+    Fenwick(int n) {
+        init(n);
+    }
+
     void build(vector<T> a) {
         n = a.size();
         tree.assign(n + 1, 0);

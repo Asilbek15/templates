@@ -1,4 +1,4 @@
-template<typename T> struct LazySegTree {
+ template<typename T> struct LazySegTree {
     struct Node {
         T val, lazy;
 
@@ -40,19 +40,6 @@ template<typename T> struct LazySegTree {
 
     LazySegTree(int n) {
         init(n);
-    }
-
-    LazySegTree(vector<T> &a) {
-        int n = a.size();
-        size = 1;
-        while (size < n) size *= 2;
-        tree.assign(2 * size - 1, neutral_element);
-        for (int i = size; i < size + n; i++) {
-            tree[i] = a[i - size];
-        }
-        for (int i = size - 1; i > 0; i--) {
-            tree[i].merge(tree[2 * i + 1], tree[2 * i + 2]);
-        }
     }
 
     void init(int n) {

@@ -1,71 +1,37 @@
 template<typename T> struct SegTree {
     vector<T> tree;
-    int size, len;
-    T neutral_element; // sum - 0, mx - (-INF), mn - INF
- 
+    int size;
+    T neutral_element = -1e9; // sum - 0, mx - (-INF), mn - INF
+
     void init(int n) {
-        len = n;
         size = 1;
-        while (size < n) size *= 2;
-        tree.assign(2 * size - 1, neutral_element);
+        while (size <= n) size *= 2;
+        tree.assign(2 * size, neutral_element);
     }
- 
-    T type(T f, T s) {
-        // return something
+
+    inline T type(T a, T b) {
+        return max(a, b);
     }
- 
-    void build(vector<T> &a, int x, int lx, int rx) {
-        if (rx - lx == 1) {
-            if (lx < a.size())
-                tree[x] = a[lx];
-        } else {
-            int m = lx + rx >> 1;
-            build(a, 2 * x + 1, lx, m);
-            build(a, 2 * x + 2, m, rx);
-            tree[x] = type(tree[2 * x + 1], tree[2 * x + 2]);
+
+    SegTree(int n) {
+        init(n);
+    }
+
+    SegTree() {}
+
+    void set(int value, int p) {  // set value at position p
+        p += size;
+        tree[p] = type(value, tree[p]);
+        for (; p > 1; p >>= 1) tree[p >> 1] = type(tree[p], tree[p ^ 1]);
+    }
+
+    T get(int l, int r) {  // sum on interval [l, r]
+        if (l > r) return neutral_element;
+        int res = neutral_element;
+        for (l += size, r += size + 1; l < r; l >>= 1, r >>= 1) {
+            if (l & 1) res = type(res, tree[l++]);
+            if (r & 1) res = type(res, tree[--r]);
         }
-    }
- 
-    void build(vector<T> &a) {
-        init(a.size());
-        build(a, 0, 0, size);
-    }
- 
-    void set(int i, T v, int x, int lx, int rx, bool add) {
-        if (rx - lx == 1) {
-            if (add) {
-                tree[x] = type(tree[x], v);
-            }
-            else {
-                tree[x] = v;
-            }
-            return;
-        }
-        int m = (lx + rx) >> 1;
-        if (i < m) {
-            set(i, v, 2 * x + 1, lx, m, add);
-        } else {
-            set(i, v, 2 * x + 2, m, rx, add);
-        }
-        tree[x] = type(tree[2 * x + 1], tree[2 * x + 2]);
-    }
- 
-    void set(int i, T v, bool add = false) {
-        if (i >= len) return;
-        set(i, v, 0, 0, size, add);
-    }
- 
-    T get(int l, int r, int x, int lx, int rx) {
-        if (l >= rx or lx >= r) return neutral_element;
-        if (l <= lx and rx <= r) return tree[x];
-        int m = lx + rx >> 1;
-        T s1 = get(l, r, 2 * x + 1, lx, m);
-        T s2 = get(l, r, 2 * x + 2, m, rx);
-        return type(s1, s2);
-    }
- 
-    T get(int l, int r) {
-        r++;
-        return get(l, r, 0, 0, size);
+        return res;
     }
 };

@@ -20,7 +20,7 @@ template<typename T> struct sparse_table {
             }
         }
     }
-    int get(int l, int r) {
+    T get(int l, int r) {
         assert(l <= r);
         int x = 31 - __builtin_clz(r - l + 1);
         return calc(rmq[x][l], rmq[x][r - (1 << x) + 1]);

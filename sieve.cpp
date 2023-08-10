@@ -1,4 +1,3 @@
-
 vector<int> sieve(int n) {
     bool prime[n + 1];
     memset(prime, true, sizeof(prime));
@@ -13,4 +12,5 @@ vector<int> sieve(int n) {
     for (int p = 3; p <= n; p += 2)
         if (prime[p])
             primes.push_back(p);
+    return primes;
 }
