@@ -1,4 +1,4 @@
- template<typename T> struct LazySegTree {
+template<typename T> struct LazySegTree {
     struct Node {
         T val, lazy;
 
@@ -47,11 +47,11 @@
     }
 
      void build(vector<T> &a) {
-         size = 1;
-         while (size < a.size()) size *= 2;
-         tree.assign(2 * size, neutral_element);
-         for (int i = size - 1; i < size - 1 + a.size(); i++) tree[i] = a[i - size + 1];
-         for (int i = size - 2; i >= 0; i--) tree[i].merge(tree[i * 2 + 1], tree[i * 2 + 2]);
+        size = 1;
+        while (size < a.size()) size *= 2;
+        tree.assign(2 * size, neutral_element);
+        for (int i = size - 1; i < size - 1 + a.size(); i++) tree[i] = a[i - size + 1];
+        for (int i = size - 2; i >= 0; i--) tree[i].merge(tree[i * 2 + 1], tree[i * 2 + 2]);
      }
 
 
@@ -63,13 +63,13 @@
         }
         tree[x].propagate(tree[2 * x + 1], tree[2 * x + 2]);
         int mid = (lx + rx) >> 1;
-        set(l, r, v, 2 * x + 1, lx, mid);
-        set(l, r, v, 2 * x + 2, mid, rx);
+        upd(l, r, v, 2 * x + 1, lx, mid);
+        upd(l, r, v, 2 * x + 2, mid, rx);
         tree[x].merge(tree[2 * x + 1], tree[2 * x + 2]);
     }
 
-    void set(int l, int r, T v) { // [l, r]
-        set(l, r + 1, v, 0, 0, size);
+    void upd(int l, int r, T v) { // [l, r]
+        upd(l, r + 1, v, 0, 0, size);
     }
 
     Node get(int l, int r, int x, int lx, int rx) {
