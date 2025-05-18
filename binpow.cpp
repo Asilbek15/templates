@@ -1,4 +1,5 @@
 long long binpow(long long a, int b, long long mod) {
+    a %= mod;
     long long res = 1;
     while (b) {
         if (b & 1)

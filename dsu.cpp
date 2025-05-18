@@ -4,8 +4,7 @@ struct dsu {
     void init(int n) {
         p.assign(n + 1, 0);
         size.assign(n + 1, 1);
-        for (int i = 1; i <= n; i++)
-            p[i] = i;
+        for (int i = 1; i <= n; i++) p[i] = i;
     }
 
     int get(int a) {

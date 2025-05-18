@@ -21,7 +21,7 @@ template<typename T> struct SegTree {
         for (int i = size - 1; i > 0; i--) tree[i] = merge(tree[i << 1], tree[i << 1 | 1]);
     }
 
-    void set(int p, T value) {  // set value at position p
+    void upd(int p, T value) {  // upd value at position p
         p += size;
         tree[p] = merge(value, tree[p]);
         for (; p > 1; p >>= 1) tree[p >> 1] = merge(tree[p], tree[p ^ 1]);

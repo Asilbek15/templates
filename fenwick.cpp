@@ -7,33 +7,13 @@ template<typename T> struct Fenwick {
         tree.assign(n + 1, 0);
     }
 
-    Fenwick(int n) {
-        init(n);
-    }
-
-    void build(vector<T> a) {
-        n = a.size();
-        tree.assign(n + 1, 0);
-        for (int i = 0; i < n; i++) {
-            update(i, a[i]);
-        }
-    }
-
     void update(int i, T v) {
-        i++;
-        while (i <= n) {
-            tree[i] += v;
-            i += i & (-i);
-        }
+        for (i++; i <= n; i += i & (-i)) tree[i] += v;
     }
 
     T get(int i) {
         T sum = 0;
-        i++;
-        while (i > 0) {
-            sum += tree[i];
-            i -= i & (-i);
-        }
+        for (i++; i > 0; i -= i & (-i)) sum += tree[i];
         return sum;
     }
 

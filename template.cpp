@@ -208,7 +208,7 @@ using namespace utils;
 
 const int mod = 9_E + 7;
 const double EPS = 1e-7;
-long long LLINF = 18_E + 10;
+long long doxuya = 18_E + 10;
 int INF = 9_E + 10;
 const char nl = '\n';
 
@@ -219,7 +219,7 @@ int month[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 */
 
 void solution(istream &cin, ostream &cout, const int &test_case) {
-
+    
 }
 
 int32_t main() {
